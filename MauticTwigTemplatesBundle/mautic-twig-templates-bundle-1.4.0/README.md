@@ -1,4 +1,7 @@
-# Twig Templates for Mautic 3 and Mautic 2
+# Twig Templates for Mautic 4, Mautic 3 and Mautic 2
+
+This plugin works on Mautic 4. Download link for Mautic 3 version is included in the package in `mautic3-version.md` file.
+Download link for Mautic 2 version is included in the package in `mautic2-version.md` file.
 
 Download link for Mautic 2 is included in the package in file mautic2-version.md.
 

@@ -11,25 +11,32 @@
 
 namespace MauticPlugin\MauticTwigTemplatesBundle\Service;
 
-use Twig\Environment;
-use Twig\TwigFilter;
+
+use Mautic\CoreBundle\Controller\CommonController;
+use Mautic\CoreBundle\Helper\CookieHelper;
+use Mautic\LeadBundle\Model\LeadModel;
+use MauticPlugin\MauticTwigTemplatesBundle\Form\Type\ContactSearchType;
+use Symfony\Component\Form\FormFactory;
+use Symfony\Component\HttpFoundation\RequestStack;
+use Symfony\Component\Routing\RouterInterface;
 
 class TwigRender
 {
     /**
-     * @var Environment
+     * @var \Twig_Environment
      */
     private $twig;
 
-    public function __construct(Environment $twig)
+    /**
+     * TwigRender constructor.
+     *
+     * @param \Twig_Environment $twig
+     */
+    public function __construct(\Twig_Environment $twig)
     {
         // TWIG filter json_decode
-        $twig->addFilter(new TwigFilter('json_decode', function ($string) {
+        $twig->addFilter(new \Twig_SimpleFilter('json_decode', function ($string) {
             return json_decode($string, true);
-        }));
-
-        $twig->addFilter(new TwigFilter('json_decode_html', function ($string) {
-            return json_decode(htmlspecialchars_decode($string), true);
         }));
         $this->twig = $twig;
     }
@@ -41,4 +48,6 @@ class TwigRender
     {
         return $this->twig;
     }
+
 }
+

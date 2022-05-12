@@ -16,11 +16,10 @@ return [
     'version'     => '1.0.0',
     'services'    => [
         'events'  => [
-
             'mautic.twigTemplates.asset.subscriber' => [
                 'class'     => \MauticPlugin\MauticTwigTemplatesBundle\EventListener\AssetSubscriber::class,
                 'arguments' => [
-                    'mautic.twigTemplates.integration.settings'
+                    'mautic.twigTemplates.integration.settings',
                 ],
             ],
             'mautic.twigTemplates.builder.subscriber' => [
@@ -31,7 +30,7 @@ return [
                     'mautic.twigTemplates.twig.render',
                     'mautic.page.model.trackable',
                     'mautic.page.model.redirect',
-                    'mautic.helper.token_builder.factory'
+                    'mautic.helper.token_builder.factory',
                 ],
             ],
         ],
@@ -48,10 +47,8 @@ return [
             ],
         ],
         'command' => [
-
         ],
         'other'   => [
-
             'mautic.twigTemplates.twig.render' => [
                 'class'     => \MauticPlugin\MauticTwigTemplatesBundle\Service\TwigRender::class,
                 'arguments' => [
@@ -66,8 +63,8 @@ return [
                     'mautic.helper.cookie',
                     'form.factory',
                     'router',
-                    'mautic.lead.model.lead'
-                ]
+                    'mautic.lead.model.lead',
+                ],
             ],
 
             'mautic.twigTemplates.helper.token'         => [
@@ -79,7 +76,7 @@ return [
             'mautic.twigTemplates.integration.settings' => [
                 'class'     => \MauticPlugin\MauticTwigTemplatesBundle\Integration\TwigTemplatesSettings::class,
                 'arguments' => [
-                    'mautic.helper.integration'
+                    'mautic.helper.integration',
                 ],
             ],
         ],
@@ -91,8 +88,8 @@ return [
             ],
         ],
         'integrations' => [
-            'mautic.integration.twigTemplates' => [
-                'class' => \MauticPlugin\MauticTwigTemplatesBundle\Integration\TwigTemplatesIntegration::class,
+            'mautic.integration.twigtemplates' => [
+                'class'     => \MauticPlugin\MauticTwigTemplatesBundle\Integration\TwigTemplatesIntegration::class,
                 'arguments' => [
                     'event_dispatcher',
                     'mautic.helper.cache_storage',

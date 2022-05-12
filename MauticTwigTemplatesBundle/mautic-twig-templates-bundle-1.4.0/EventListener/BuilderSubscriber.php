@@ -198,13 +198,17 @@ class BuilderSubscriber implements EventSubscriberInterface
      */
     public function onEmailGenerate(EmailSendEvent $event)
     {
+        if ($event->isDynamicContentParsing()) {
+            return;
+        }
+
         $contact     = $event->getLead();
         $channelId   = !is_null($event->getEmail()) ? $event->getEmail()->getId() : null;
-        $tokens      = $this->tokenHelper->findTwigTokens($event->getContent());
+        $tokens      = $this->tokenHelper->findTwigTokens($event->getContent().$event->getSubject());
         $contactData = $this->appendAdditionalContactData(implode('', $tokens), $contact);
 
         foreach ($tokens as $key => $content) {
-            $content = $this->twig->getTwig()->createTemplate($content)->render(['contact' => $contactData]);
+            $content = $this->twig->getTwig()->createTemplate($content)->render(['contact' => $contactData, 'tokens' =>$event->getTokens() ]);
             $event->addToken($key, $this->generateTrackableUrls($content, 'email', $channelId, $event->generateClickthrough()));
         }
     }
